@@ -1,0 +1,117 @@
+<div class="bootstrap-wrapper" *ngIf="!isSubmit">
+    <div class="container-fluid">
+      <div class="row">
+
+        <div class="col-md-2">
+            <!-- Instructions -->
+           <mat-card style="margin-top: 70px;">
+            <b><h3 style="color: red;">Instructions Read carefully</h3></b>
+            <ul>
+                <li>Don not refresh the page otherwise you will get new Questions in this Quiz</li>
+                <li>Do Not Switch the Tab</li>
+                <li>Do Not minimize the window</li>
+            </ul>
+           </mat-card>
+        </div>
+
+        <div class="col-md-8">
+            <!-- Questions -->
+           <ng-container *ngIf="questions">
+            <h1 class="mt20">On Going <b>{{questions[0].quiz.title}}</b>  </h1>
+           </ng-container>
+           <mat-card *ngFor="let q of questions; let i = index" class="mt10">
+            <mat-card-content>
+                
+                <b><p >Q {{i+1}}) <span class="ml10" [innerHTML]="q.content"></span></p></b>
+                <mat-divider></mat-divider>
+                <br>
+                <div class="row mt20">
+                    <div class="col-md-6">
+                        <input
+                         type="radio" 
+                         [value]="q.option1" 
+                         name={{i}}
+                         [(ngModel)]="q.givenAnswer"
+                          />{{q.option1}}
+                    </div>
+                    <div class="col-md-6">
+                        <input type="radio" [value]="q.option2" name={{i}} [(ngModel)]="q.givenAnswer">{{q.option2}}
+                    </div>
+                </div>
+                <div class="row mt20">
+                    <div class="col-md-6">
+                        <input type="radio" [value]="q.option3" name={{i}} [(ngModel)]="q.givenAnswer">{{q.option3}}
+                    </div>
+                    <div class="col-md-6">
+                        <input type="radio" [value]="q.option4" name={{i}} [(ngModel)]="q.givenAnswer">{{q.option4}}
+                    </div>
+                </div>
+            </mat-card-content>
+
+           </mat-card>
+           <div class=" text-center mt20 mb20">
+                <button (click)="submitQuiz()"  mat-raised-button color="primary">Submit Quiz</button>
+            
+           </div>
+        </div>
+
+        <div class="col-md-2">
+            <!-- progress -->
+           <mat-card style="margin-top: 70px;" >
+            <mat-card-header>
+                <mat-card-title>
+                    Progress
+                </mat-card-title>
+                <mat-card-subtitle>
+                    Quiz will automatically submitted when time riches to <b>0:0</b> 
+                </mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <h1 class="text-center"> {{getFormattedTime()}} </h1>
+                <mat-spinner
+                    mode="determinate" 
+                    color="warn"  
+                    style="margin: auto;"
+                    [value]="(timer/(this.questions.length * 2 * 60))*100"                 
+                
+                >
+                    
+                </mat-spinner>
+            </mat-card-content>
+           </mat-card>
+        </div>
+        
+      </div>
+
+    </div>
+
+</div>
+
+<!-- show the result -->
+
+<div class="bootstrap-wrapper" *ngIf="isSubmit">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <mat-card class="text-center mt20">
+                <mat-card-header>
+                    <mat-card-title>
+                        <b><h1 style="color: blue;">Quiz Result</h1></b>
+                    </mat-card-title>                   
+                </mat-card-header>
+                <mat-card-content class="text-center">
+                    <b><h1 style="color: red;">Marks Got          : {{marksGot}} </h1></b>
+                    <b><h1 style="color: red;">Percentage          : {{percentage}} %</h1></b> 
+                    <b><h1 style="color: red;">Correct Answer       : {{correctAnswer}} </h1></b>
+                    <b><h1 style="color: red;">Questions Attempted  : {{attempted}} </h1></b>
+                    
+                </mat-card-content>
+                <mat-card-actions class="text-center">
+                    <button (click)="printPage()" mat-raised-button color="primary">Print</button>
+                    <button mat-raised-button color="accent" [routerLink]="'/user-dashboard/0'">Home</button>
+                </mat-card-actions>
+            </mat-card>
+        
+        </div>
+    
+    </div>
+</div>

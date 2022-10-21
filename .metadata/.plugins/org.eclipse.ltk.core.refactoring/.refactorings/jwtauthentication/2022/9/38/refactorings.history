@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;com.jwt.helper.JwtUtill&apos; to &apos;JwtUtil&apos;&#x0D;&#x0A;- Original project: &apos;jwtauthentication&apos;&#x0D;&#x0A;- Original element: &apos;com.jwt.helper.JwtUtill&apos;&#x0D;&#x0A;- Renamed element: &apos;com.jwt.helper.JwtUtil&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;JwtUtill&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.jwt.helper{JwtUtill.java[JwtUtill" matchStrategy="1" name="JwtUtil" qualified="false" references="true" similarDeclarations="false" stamp="1662890884186" textual="false" version="1.0"/>
+</session>

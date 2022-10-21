@@ -1,0 +1,83 @@
+<mat-card>
+    <h1><strong>Update form</strong></h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <form *ngIf="quiz" (ngSubmit)="updateData()">
+                    <!-- title -->
+                    <mat-form-field class="w100" appearance="fill">
+                        <mat-label>Enter title</mat-label>
+                        <input 
+                         [(ngModel)]="quiz.title"
+                        type="text" name="title" matInput placeholder="Enter the title">
+                    </mat-form-field>
+
+                    <!-- Description field -->
+
+                    <mat-form-field class="w100" appearance="fill">
+                        <mat-label>Enter Description</mat-label>
+                        <textarea
+                        [(ngModel)]="quiz.description"
+                         name="description" matInput placeholder="Enter Description here" rows="5"></textarea>
+                    </mat-form-field>
+
+                    <!-- Maximum marks -->
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <!-- max marks -->
+
+                            <mat-form-field class="w100" appearance="fill">
+                                <mat-label>Maixmum Marks</mat-label>
+                                <input 
+                                [(ngModel)]="quiz.maxMarks"
+                                type="text" name="maxMarks" matInput placeholder="Enter Here">
+                            </mat-form-field>
+
+                        </div>
+
+                        <div class="col-md-6">
+                            <!-- number of question to shown -->
+                            <mat-form-field class="w100" appearance="fill">
+                                <mat-label>Number of Question</mat-label>
+                                <input
+                                [(ngModel)]="quiz.numberOfQuestions" 
+                                type="text" name="numberOfQuestions" matInput placeholder="Enter here">
+                            </mat-form-field>
+
+                        </div>
+                    </div>
+
+
+                    <!-- active field -->
+                 <mat-slide-toggle
+                 name="active"
+                 [(ngModel)]="quiz.active"
+                    class="mt20"                
+                    >
+                     publish Status
+                 </mat-slide-toggle>
+                 <br/>
+                    
+                    <!-- Category select -->
+                 <mat-form-field appearance="fill" class="mt20 w100">
+                    <mat-label>categories</mat-label>
+                    <mat-select name="category" [(ngModel)]="quiz.category.cid">
+                      <mat-option *ngFor="let c of categories" [value]="c.cid">
+                        {{c.title}}
+                      </mat-option>         
+                    </mat-select>                 
+                </mat-form-field>
+                <div class="conatiner text-center">
+                    <button  mat-raised-button color="accent" type="submit">Update</button>
+                </div>
+
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+</mat-card>
+
+<!-- {{quizData | json }} -->
